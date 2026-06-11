@@ -136,7 +136,7 @@
                   {%- for comment in article.comments -%}
                     <div class="article-comment">
                       {%- if section.settings.show_gravatar -%}
-                        <img class="article-comment__gravatar" src="//www.gravatar.com/avatar/{{ comment.email | md5 }}?s=100" alt="{{ comment.author }}">
+                        <img class="article-comment__gravatar" loading="lazy" decoding="async" src="//www.gravatar.com/avatar/{{ comment.email | md5 }}?s=100" alt="{{ comment.author }}">
                       {%- endif -%}
 
                       <div class="article-comment__inner">
