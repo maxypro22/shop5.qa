@@ -176,6 +176,34 @@ p, .rte p {
   letter-spacing: -0.01em;
 }
 
+/* "View all" — indigo bold link (mockup style) */
+.section__action-link {
+  color: var(--sf-primary);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.section__action-link:hover {
+  color: var(--sf-primary-deep);
+  text-decoration: underline;
+}
+
+.section__action-link svg {
+  transition: transform 0.2s ease;
+}
+
+.section__action-link:hover svg {
+  transform: translateX(3px);
+}
+
+[dir="rtl"] .section__action-link:hover svg {
+  transform: translateX(-3px) scaleX(-1);
+}
+
+[dir="rtl"] .section__action-link svg {
+  transform: scaleX(-1);
+}
+
 /* Small labels / eyebrows */
 .section__subheading,
 .subheading,
@@ -451,13 +479,23 @@ body.sf-scrolled .shopify-section__header {
   color: var(--sf-primary);
 }
 
-/* Header icons + actions */
+/* Header icons + actions — round buttons, indigo icons */
 .header__action-item-link {
-  transition: color 0.2s ease;
+  border-radius: var(--sf-radius-pill);
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+.header__action-item-link svg {
+  color: var(--sf-primary);
 }
 
 .header__action-item-link:hover {
   color: var(--sf-primary);
+  background: var(--sf-surface-low);
+}
+
+.header__action-item-link:active {
+  transform: scale(0.9);
 }
 
 /* Cart badge — indigo circle */
@@ -471,7 +509,7 @@ body.sf-scrolled .shopify-section__header {
    7. SEARCH — soft pill field
    ────────────────────────────────────────────── */
 .search-bar__top {
-  background: var(--sf-surface-low);
+  background: #e7e8e9;
   border: 1px solid transparent;
   border-radius: var(--sf-radius-pill);
   box-shadow: none;
@@ -637,13 +675,14 @@ body.sf-scrolled .shopify-section__header {
 }
 
 /* ──────────────────────────────────────────────
-   11. PRODUCT CARDS — white, rounded, soft shadow
+   11. PRODUCT CARDS — white, very rounded, padded shot
    ────────────────────────────────────────────── */
 .product-item {
   background: var(--sf-surface);
-  border-radius: var(--sf-radius-lg);
+  border: 1px solid #f3f4f6;
+  border-radius: 20px;
   box-shadow: var(--sf-shadow-card);
-  padding: 10px;
+  padding: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -657,13 +696,15 @@ body.sf-scrolled .shopify-section__header {
 .product-item__image-wrapper {
   display: block;
   position: relative;
-  border-radius: var(--sf-radius-md);
+  border-radius: 14px;
   overflow: hidden;
-  background: var(--sf-surface-low);
+  background: #F3F4F6;
+  padding: 12px;
 }
 
 .product-item__image-wrapper img {
   transition: transform 0.5s ease, opacity 0.3s ease;
+  border-radius: 8px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -686,11 +727,11 @@ body.sf-scrolled .shopify-section__header {
 }
 
 .product-item__vendor {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
   color: var(--sf-muted);
-  text-transform: none;
-  letter-spacing: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 /* Prices — indigo, semibold */
@@ -734,32 +775,37 @@ body.sf-scrolled .shopify-section__header {
   color: #ffffff;
 }
 
-/* Quick-add / quick-view — fade up on hover (desktop) */
+/* Quick-add — outlined indigo pill that fills on hover (mockup style) */
 .product-item__action-button.button--primary {
-  background: var(--sf-primary);
-  color: #ffffff;
-  border-radius: var(--sf-radius-sm);
+  background: transparent;
+  color: var(--sf-primary);
+  border: 2px solid var(--sf-primary);
+  border-radius: var(--sf-radius-pill);
+  font-weight: 700;
 }
 
 .product-item__action-button.button--primary:hover {
-  background: var(--sf-primary-deep);
+  background: var(--sf-primary);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.25);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .product-item--vertical .product-item__action-list {
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .product-item--vertical:hover .product-item__action-list,
-  .product-item--vertical:focus-within .product-item__action-list {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.product-item__action-button.button--ternary {
+  border-radius: var(--sf-radius-pill);
 }
 
 .product-item__inventory {
+  font-size: 12px;
+}
+
+/* Rating — soft chip with amber stars (mockup style) */
+.product-item__reviews-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--sf-surface-low);
+  border-radius: var(--sf-radius-pill);
+  padding: 3px 10px;
   font-size: 12px;
 }
 
@@ -796,13 +842,14 @@ body.sf-scrolled .shopify-section__header {
 /* ──────────────────────────────────────────────
    13. COLLECTION PAGE — filter panel + pills
    ────────────────────────────────────────────── */
-/* Filter sidebar groups read as soft cards */
+/* Filter sidebar groups read as soft rounded cards (mockup: rounded-3xl) */
 .collection__filter-group {
   background: var(--sf-surface);
-  border: 1px solid var(--sf-border);
-  border-radius: var(--sf-radius-md);
-  padding: 16px;
-  margin-bottom: 12px;
+  border: 1px solid #f3f4f6;
+  border-radius: 24px;
+  box-shadow: var(--sf-shadow-card);
+  padding: 20px;
+  margin-bottom: 14px;
 }
 
 .collection__filter-group-name {
@@ -898,6 +945,10 @@ input[type="range"] {
   transition: border-color 0.2s ease, opacity 0.2s ease;
 }
 
+.product-gallery__thumbnail:hover {
+  border-color: #c3c0ff;
+}
+
 .product-gallery__thumbnail.is-nav-selected {
   border-color: var(--sf-primary);
 }
@@ -913,9 +964,9 @@ input[type="range"] {
   color: var(--sf-primary);
 }
 
-/* Variant chips — pill, indigo selected */
+/* Variant chips — rounded-lg, indigo selected (mockup style) */
 .block-swatch__item {
-  border-radius: var(--sf-radius-pill);
+  border-radius: var(--sf-radius-sm);
   border: 1px solid var(--sf-border-input);
   transition: all 0.2s ease;
 }
@@ -936,11 +987,13 @@ input[type="range"] {
   box-shadow: 0 0 0 2px var(--sf-surface), 0 0 0 4px var(--sf-primary);
 }
 
-/* Buy buttons — 48px high, indigo / charcoal pair */
+/* Buy buttons — 56px tall, rounded-xl, indigo / soft-gray pair */
 .product-form__add-button.button--primary {
   background: var(--sf-primary);
-  border-radius: var(--sf-radius-sm);
-  min-height: 48px;
+  border-radius: 12px;
+  min-height: 56px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .product-form__add-button.button--primary:hover {
@@ -950,10 +1003,10 @@ input[type="range"] {
 .shopify-payment-button__button--unbranded {
   background: var(--sf-charcoal) !important;
   color: #ffffff !important;
-  border-radius: var(--sf-radius-sm) !important;
+  border-radius: 12px !important;
   font-family: var(--text-font-family) !important;
   font-weight: 600 !important;
-  min-height: 48px;
+  min-height: 56px;
   transition: background-color 0.25s ease, transform 0.25s ease !important;
 }
 

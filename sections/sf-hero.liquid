@@ -4,8 +4,7 @@
 {%- endcomment -%}
 
 <section class="sf-hero-section" data-section-id="{{ section.id }}" data-section-type="sf-hero">
-  <div class="container">
-    <div class="sf-hero {% if section.settings.image %}sf-hero--photo{% endif %}">
+  <div class="sf-hero {% if section.settings.image %}sf-hero--photo{% endif %}">
       {%- if section.settings.image -%}
         {{- section.settings.image | image_url: width: 2400 | image_tag:
               fetchpriority: 'high',
@@ -57,20 +56,14 @@
           </ul>
         {%- endif -%}
       </div>
-    </div>
   </div>
 </section>
 
 <style>
-  .sf-hero-section {
-    padding: 18px 0 8px;
-  }
-
   .sf-hero {
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    min-height: 440px;
+    min-height: 560px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,8 +138,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 48px;
-    padding: 12px 32px;
+    min-height: 56px;
+    padding: 16px 40px;
     border-radius: 10px;
     font-size: 15px;
     font-weight: 600;
@@ -216,8 +209,7 @@
 
   @media screen and (max-width: 640px) {
     .sf-hero {
-      min-height: 360px;
-      border-radius: 14px;
+      min-height: 440px;
     }
 
     .sf-hero__content {

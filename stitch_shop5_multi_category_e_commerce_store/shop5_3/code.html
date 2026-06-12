@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+Arabic:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#191c1d",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#a44100",
+                    "surface-tint": "#4d44e3",
+                    "secondary": "#555f6f",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-surface-variant": "#464555",
+                    "secondary-fixed-dim": "#bdc7d9",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "surface": "#f8f9fa",
+                    "on-tertiary-container": "#ffd2be",
+                    "tertiary-fixed": "#ffdbcc",
+                    "surface-dim": "#d9dadb",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#4f46e5",
+                    "on-primary-container": "#dad7ff",
+                    "inverse-surface": "#2e3132",
+                    "outline-variant": "#c7c4d8",
+                    "surface-container-low": "#f3f4f5",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "background": "#f8f9fa",
+                    "on-background": "#191c1d",
+                    "surface-variant": "#e1e3e4",
+                    "secondary-container": "#d6e0f3",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-bright": "#f8f9fa",
+                    "primary-fixed": "#e2dfff",
+                    "primary": "#3525cd",
+                    "surface-container-high": "#e7e8e9",
+                    "on-tertiary-fixed": "#351000",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#edeeef",
+                    "on-error": "#ffffff",
+                    "tertiary": "#7e3000",
+                    "on-secondary-fixed": "#121c2a",
+                    "inverse-primary": "#c3c0ff",
+                    "on-primary-fixed": "#0f0069",
+                    "secondary-fixed": "#d9e3f6",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#777587",
+                    "on-secondary-fixed-variant": "#3d4756",
+                    "on-secondary-container": "#596373",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb695"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "margin-mobile": "16px",
+                    "sm": "16px",
+                    "base": "4px",
+                    "md": "24px",
+                    "gutter": "24px",
+                    "lg": "48px",
+                    "container-max": "1280px",
+                    "xl": "80px"
+            },
+            "fontFamily": {
+                    "sans": ["Noto Sans Arabic", "Inter", "sans-serif"],
+                    "headline-md": ["Noto Sans Arabic"],
+                    "label-md": ["Noto Sans Arabic"],
+                    "body-md": ["Noto Sans Arabic"],
+                    "display-lg": ["Noto Sans Arabic"],
+                    "body-lg": ["Noto Sans Arabic"],
+                    "display-lg-mobile": ["Noto Sans Arabic"],
+                    "headline-sm": ["Noto Sans Arabic"],
+                    "label-sm": ["Noto Sans Arabic"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+        }
+        .product-image-container:hover .zoom-overlay {
+            opacity: 1;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-on-surface shadow-sm sticky top-0 z-50">
+<nav class="flex flex-row-reverse justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-16 md:h-20">
+<!-- Trailing Icons -->
+<div class="flex items-center gap-md">
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-variant p-2 rounded-full transition-all scale-95 active:scale-90">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">person</span>
+</button>
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-variant p-2 rounded-full transition-all scale-95 active:scale-90 relative">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary text-on-primary text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+</button>
+</div>
+<!-- Navigation Links (Desktop) -->
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">New Arrivals</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Perfumes</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary font-bold pb-1 font-label-md text-label-md" href="#">Watches</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Apparel</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Sale</a>
+</div>
+<!-- Brand Logo -->
+<div class="flex items-center">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg font-bold text-primary dark:text-primary-fixed">Shop5</h1>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-lg">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-xs mb-lg overflow-x-auto no-scrollbar whitespace-nowrap text-on-surface-variant">
+<a class="font-label-sm text-label-sm hover:text-primary" href="#">الرئيسية</a>
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+<a class="font-label-sm text-label-sm hover:text-primary" href="#">ساعات فاخرة</a>
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+<span class="font-label-sm text-label-sm text-primary">ساعة فخمة إصدار محدود</span>
+</nav>
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Product Gallery (Bento-style layout for premium feel) -->
+<div class="lg:col-span-7 grid grid-cols-4 gap-sm">
+<div class="col-span-4 aspect-square bg-surface-container rounded-xl overflow-hidden relative product-image-container group cursor-crosshair">
+<img alt="ساعة فخمة" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A macro close-up of a premium mechanical watch with a silver dial and sapphire crystal face. The lighting is sophisticated and moody, highlighting the intricate textures of the metallic watch hands and complications. A soft, warm glow illuminates the side of the watch case, casting gentle shadows that emphasize its sleek, modern design against a dark, minimalist studio background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjW9CmXVXtaKolD0e13bc0wqJnucUe4pTxeSEoYSQ60ncKpzIIrRO30lRXBEDRJqxjTOiGPvRBCwRJRejFeNBBsJNma0Z7HoRwj74KssZByQ5YMBIE5-l3Uuof-CyK_9Y8PpVlNwKImGM34_AoIdKKbl252LYvzknVw4IugIv7UDj-27t95kgN1WpGh23yW3YLbzksJ_d-WtEQFA_sYLnopEOsTN_qxnYfsFiAfxldZHKVbDirWLwj2ib6sDRsVJicqbaftgAJqmWF"/>
+<div class="absolute inset-0 bg-black/5 opacity-0 transition-opacity duration-300 zoom-overlay flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl">zoom_in</span>
+</div>
+<div class="absolute top-4 right-4 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-sm text-label-sm">إصدار محدود</div>
+</div>
+<div class="col-span-1 aspect-square bg-surface-container rounded-lg overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="Detail 1" class="w-full h-full object-cover" data-alt="Detailed side view of a luxury watch casing showing the precision-machined crown and the elegant curve of the lugs. The shot captures the high-polish finish reflecting soft ambient studio light, creating a clean and premium corporate aesthetic. The depth of field is shallow, focusing entirely on the craftsmanship of the metalwork." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiywtWU80W1JVUu3-sOcaOSlUQ1lwPMDMGvc_3cIHcYikPyU1ZkNi36OmccsfCRlKZeZTPMHFk35tySj7PclAu7UR8iURVOilFkzV73Uz8Wx9qugzINnEfL64Y6uDUnlE5slMqiTX-L8jvaYxSQXmFT-bB5sOfWE05Pa0oMMWvsWmeCTrmBZf5NcDLuIQa_lfK00NPhmVtBvhgc6dCxVmIek2dU3QY7rs49wAVhARc0tJfL7UN_AjbZtHqvCQTKIYaPHhj7oL3UfCM"/>
+</div>
+<div class="col-span-1 aspect-square bg-surface-container rounded-lg overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="Detail 2" class="w-full h-full object-cover" data-alt="Close-up of the genuine leather strap of a premium watch, showing the fine stitching and natural texture of the material. The lighting is bright and even, emphasizing the rich brown tones of the leather against a neutral light-mode background. The overall mood is one of quality and classic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUlpDjp5nE4Hz9om0K1BUmMKAFdyZLRCValwkloGQI9_V1SkFfUmevFdhdxnSmLQVNXXK5Jlq5MPuym1nN684y8sKNBb93ww-7EEWSf6vQ9LGtB9KtvFZFtSq8lB0Zahvv3MJSEmL8L13SScxCehkxU1OJs1OickSo_rAVeNko13lXNpI5HQn37NYR5v_W3-guGYS3P58UjUhOT9Y1bIxl6d2Xyd18sydUf97rhKdKRpvFP-BGdue82_97_1GzdY65Sj-6N33gKNSG"/>
+</div>
+<div class="col-span-1 aspect-square bg-surface-container rounded-lg overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
+<img alt="Lifestyle" class="w-full h-full object-cover" data-alt="A lifestyle shot of the luxury watch on a wooden table next to a cup of espresso and a high-end fountain pen. The composition follows an editorial, minimalist aesthetic with clean lines and a sophisticated atmosphere. The natural window light creates soft shadows and highlights the watch as the central focus of a professional desktop scene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCc__4Q1bcMpU12YU8fQ3qTEiLnTG475IujUWv0DsdxHKAMhmzGdNdlfJqqkcvTtHrE98e3Bdw1dQkP-Fxtd-7g06aJcbs61GOL38HEIzeMSZhlrzVlYwsar8p-rGdgqw1PapZRsXFEztNpWQfh4oFKUJJasBzjQ-M-5l_ZhEeMmgKGT-mfu174sQZkVhINLsG7hi-QTWwDILcAGRnti1iZlt5X8H00mlv_twhsXm_HAUDBDmWiVKsVmW_3Nd8XkhBG5Rw5Kxu3EV5"/>
+</div>
+<div class="col-span-1 aspect-square bg-surface-container rounded-lg overflow-hidden relative cursor-pointer group">
+<img alt="Back view" class="w-full h-full object-cover opacity-50" data-alt="A dramatic back-view of a luxury watch with a transparent case back revealing the complex automatic movement inside. The gold gears and oscillating weight are beautifully detailed under professional studio lights, creating a high-end horological visual. The style is sharp, clean, and highlights technical excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0Gx0qLn58I1LcbbgFPpFUK7JgV_G0C5WwBFhfkfswG_9ghyxzG6UsOPJYQ9GBwWt0Ajhd4HSDjgMSTtnTiuGLufQe2HdLp4wdR_ER-s8ZC9IBmpR182GsV3fJrkKIux3te5vvirqn5akpI_iLqwMNk5TovTcUXR-SWlRL-VzOWAr0PqsF7tMBH5S23y1kL2LYpu6EgcTlv7iZtov5Oy2g6FgDI23PLP4a9AtkDOvcj563-_WoortPEsY2jdLUxD3xetsTfvidVI1A"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-on-surface font-label-md text-label-md">+4 صور</span>
+</div>
+</div>
+</div>
+<!-- Product Info -->
+<div class="lg:col-span-5 flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-primary tracking-widest">مجموعة الرفاهية</span>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface">ساعة فخمة إصدار محدود</h2>
+<div class="flex items-center gap-sm">
+<div class="flex text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<span class="text-on-surface-variant font-label-md text-label-md">(128 تقييم)</span>
+</div>
+</div>
+<div class="flex items-baseline gap-md">
+<span class="font-headline-md text-headline-md text-primary">2,499.00 ر.س</span>
+<span class="font-body-md text-body-md text-on-surface-variant line-through">3,200.00 ر.س</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant border-t border-outline-variant pt-md">
+                    تجمع هذه الساعة بين الدقة السويسرية المتناهية والتصميم العصري الأنيق. مصنوعة من الفولاذ المقاوم للصدأ مع زجاج ياقوتي مقاوم للخدش، مما يجعلها قطعة خالدة في مجموعتك الخاصة.
+                </p>
+<!-- Selection Options -->
+<div class="flex flex-col gap-md py-md">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface block mb-xs">لون الحزام</span>
+<div class="flex gap-sm">
+<button class="w-10 h-10 rounded-full bg-[#3D2B1F] ring-2 ring-offset-2 ring-primary"></button>
+<button class="w-10 h-10 rounded-full bg-[#1A1A1A] hover:scale-110 transition-transform"></button>
+<button class="w-10 h-10 rounded-full bg-[#4A4A4A] hover:scale-110 transition-transform"></button>
+</div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface block mb-xs">المقاس (قطر الساعة)</span>
+<div class="flex gap-sm">
+<button class="px-md py-xs border border-outline rounded-lg font-label-md text-label-md hover:border-primary hover:text-primary transition-colors">40 ملم</button>
+<button class="px-md py-xs border-2 border-primary text-primary rounded-lg font-label-md text-label-md">42 ملم</button>
+<button class="px-md py-xs border border-outline rounded-lg font-label-md text-label-md hover:border-primary hover:text-primary transition-colors">44 ملم</button>
+</div>
+</div>
+</div>
+<!-- CTA Buttons -->
+<div class="flex flex-col gap-sm">
+<button class="w-full h-14 bg-primary text-on-primary rounded-xl font-headline-sm text-headline-sm flex items-center justify-center gap-sm hover:bg-primary-container transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined">shopping_bag</span>
+                        إضافة إلى السلة
+                    </button>
+<button class="w-full h-14 bg-surface-container-high text-on-surface rounded-xl font-headline-sm text-headline-sm flex items-center justify-center gap-sm hover:bg-surface-variant transition-all active:scale-[0.98]">
+                        شراء الآن
+                    </button>
+</div>
+<!-- Trust Badges -->
+<div class="grid grid-cols-3 gap-sm pt-md text-center">
+<div class="flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">شحن مجاني</span>
+</div>
+<div class="flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">ضمان سنتين</span>
+</div>
+<div class="flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined text-primary">potted_plant</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">صناعة يدوية</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Details Tabs -->
+<div class="mt-xl border-b border-outline-variant">
+<div class="flex gap-lg">
+<button class="pb-md border-b-2 border-primary text-primary font-label-md text-label-md">المواصفات</button>
+<button class="pb-md text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md">المراجعات (128)</button>
+<button class="pb-md text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md">معلومات الشحن</button>
+</div>
+</div>
+<div class="py-lg max-w-3xl">
+<ul class="space-y-sm font-body-md text-body-md text-on-surface-variant">
+<li class="flex justify-between border-b border-surface-container-high py-2">
+<span class="font-bold text-on-surface">المحرك:</span>
+<span>أوتوماتيكي كاليبر 5</span>
+</li>
+<li class="flex justify-between border-b border-surface-container-high py-2">
+<span class="font-bold text-on-surface">مقاومة الماء:</span>
+<span>100 متر (10 بار)</span>
+</li>
+<li class="flex justify-between border-b border-surface-container-high py-2">
+<span class="font-bold text-on-surface">مادة الهيكل:</span>
+<span>فولاذ جراحي 316L</span>
+</li>
+<li class="flex justify-between border-b border-surface-container-high py-2">
+<span class="font-bold text-on-surface">احتياطي الطاقة:</span>
+<span>42 ساعة</span>
+</li>
+</ul>
+</div>
+<!-- Related Products Section -->
+<section class="mt-xl">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">منتجات ذات صلة</h3>
+<a class="text-primary font-label-md text-label-md flex items-center gap-xs hover:underline" href="#">
+                    عرض الكل
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] rounded-xl bg-surface-container overflow-hidden mb-sm relative">
+<img alt="Product 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern minimalist wall clock with a clean white face and black hands, shot in a high-key bright studio setting. The visual style is contemporary and airy, fitting perfectly into a modern lifestyle retail context. Professional soft lighting eliminates harsh shadows, emphasizing form and functional beauty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu90uv1VJY2NBN-vSHIA2W204VnQjS5U5MLG4jpf2g0dhJvuxZWDHNtx8AvbFJOExhXhusear2S81p0GvUxxtgHn2cupO9i4sL40f02EqRcMVc6HwvT4dN1VBXLsEtQ03f3Cu_5W9VGvxeqkjLtsbbqXXxCXOOMGOIY5U2QORTkQpsBhhDihQ8Hc3aFnTUTJnP9j8FXGJuay2RfgtAnOGcnIrJ5PiobAMco20PW0P3BDIROrOhCtOOYZLxNgSqXZ29keYUF8wIR95m"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur text-on-surface py-2 rounded-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0 font-label-md text-label-md">إضافة سريعة</button>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">ساعة كلاسيكية بسيطة</h4>
+<span class="font-label-sm text-label-sm text-primary">850.00 ر.س</span>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] rounded-xl bg-surface-container overflow-hidden mb-sm relative">
+<img alt="Product 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A rugged outdoor-ready chronograph watch with a textured black dial and thick rubber strap. The scene is lit to highlight durability and utility, using a mix of hard and soft lights to create depth and metallic highlights. The aesthetic is professional yet adventurous, tailored for a high-end active lifestyle brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOuYMQKg2bedsBNjP9xANN1spMZ3zHCKhxVInnj4W7m5kQlRH5mKrymyP4A5OFhwExQdkQfdERom_1vNrfU9OzKEm2D0ffLyVo-a-Bhl1t1GQB-YPKhlZIaOsXTDdxErill1QO-wcYjsPbzBo5YeuR_ySPnGx3hHh_3tYWRUfKyds-j21bTraRKV58ZycFbK7NpN87oyP_6ebdDPo2GzzNwyXxf5zSDyq6m7vFEu-ZG9_rv89gSHMfkGR2eEGTPIGGbq-yzmA82hOM"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur text-on-surface py-2 rounded-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0 font-label-md text-label-md">إضافة سريعة</button>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">ساعة رياضية متينة</h4>
+<span class="font-label-sm text-label-sm text-primary">1,200.00 ر.س</span>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] rounded-xl bg-surface-container overflow-hidden mb-sm relative">
+<img alt="Product 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Elegant gold-plated dress watch with a slim profile and minimalist white dial, showcased on a luxurious velvet surface. The lighting is warm and golden, evoking a sense of opulence and high-end fashion. The background is softly blurred to maintain absolute focus on the reflective gold surfaces and sophisticated design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUmkBCzJzh1p4e--dzrz5TckVzycQpQav4E0JiJzdoLrfWdYWS1fXf7vKDN2jBQKN62qluAnvnqB-hzlECh4wrB_OrnMn4ZEjEs0fsu3E9BLoIslsF1FTf9lfF_ICgcwlg9GEuc4EUefZYIUZgij9n0bQTQcp9YRAqli0PMeqgJ1FYgQJdXCaBNw3LRyatCVIT39UoxJlpprE6mpa1Wk9mrQcaS3pRlkFfB0AAws3IghTLRZclzCVgnTz2uAVaGiJqIwwN0u27un0M"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur text-on-surface py-2 rounded-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0 font-label-md text-label-md">إضافة سريعة</button>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">ساعة ذهبية للسهرات</h4>
+<span class="font-label-sm text-label-sm text-primary">1,850.00 ر.س</span>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="aspect-[4/5] rounded-xl bg-surface-container overflow-hidden mb-sm relative">
+<img alt="Product 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern smartwatch with a sleek digital display showing health metrics, placed on a clean geometric pedestal. The lighting is futuristic and cool-toned, with subtle neon blue accents reflecting off the glass screen. The environment is a pristine, white digital-focused space, representing high-tech luxury and peak performance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIMnCU7Vxu0lDgRA5W8Y0wW8r1MOXM6NfYeZc5oEBSrJ-oMeZX_i2laAZyoGDTGtb1hjVq2VIwdMZ_QOUuW9D4hT3k-422Uu2RqtZFFegglGIejNcTT3NMZjvhJJqz7szWWjbzmhI1tVBEubfl6gesO9VRcYsTPNK1m6S5TufBiCcSQrVSrF-65sWYBFDDRjRavF6n8LVow4m0EG_Vzjjcn0D3VpjUBU3sUsjcpmqrxHvSjkOX7oPSox7Qdi8PiSBe9t0MZIlNMasi"/>
+<button class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur text-on-surface py-2 rounded-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0 font-label-md text-label-md">إضافة سريعة</button>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">ساعة ذكية فاخرة</h4>
+<span class="font-label-sm text-label-sm text-primary">2,100.00 ر.س</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-on-background border-t border-outline-variant mt-xl">
+<div class="w-full py-lg px-margin-mobile md:px-gutter max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-4 gap-md">
+<!-- Brand Column -->
+<div class="flex flex-col gap-sm">
+<span class="font-headline-md text-headline-md text-on-surface dark:text-inverse-on-surface">Shop5</span>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant">وجهتكم الأولى لأرقى المنتجات والماركات العالمية المختارة بعناية لتناسب ذوقكم الرفيع.</p>
+<div class="flex gap-sm mt-xs">
+<a class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+<!-- Links Column 1 -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">تسوق</h4>
+<nav class="flex flex-col gap-xs">
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">الساعات</a>
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">العطور</a>
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">الملابس</a>
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">الإصدارات المحدودة</a>
+</nav>
+</div>
+<!-- Links Column 2 -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">المساعدة</h4>
+<nav class="flex flex-col gap-xs">
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">Shipping Policy</a>
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">Contact Support</a>
+<a class="text-on-surface-variant hover:text-primary dark:text-outline-variant underline-offset-4 hover:underline" href="#">Privacy Policy</a>
+</nav>
+</div>
+<!-- Newsletter Column -->
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold">انضم لنشرتنا</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">كن أول من يعرف عن مجموعاتنا الجديدة والحصرية.</p>
+<form class="flex flex-col gap-xs">
+<input class="bg-surface border-outline rounded-lg px-md py-xs focus:ring-primary focus:border-primary" placeholder="بريدك الإلكتروني" type="email"/>
+<button class="bg-on-surface text-surface py-xs rounded-lg font-label-md text-label-md hover:bg-primary transition-colors">اشتراك</button>
+</form>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-md border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Shop5. All rights reserved.</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">payments</span>
+<span class="material-symbols-outlined text-on-surface-variant">credit_card</span>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.product-image-container').forEach(container => {
+            const img = container.querySelector('img');
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                img.style.transformOrigin = `${x * 100}% ${y * 100}%`;
+                img.style.transform = 'scale(2)';
+            });
+            container.addEventListener('mouseleave', () => {
+                img.style.transform = 'scale(1)';
+                img.style.transformOrigin = 'center center';
+            });
+        });
+
+        // Toggle mobile menu logic could go here
+    </script>
+</body></html>
