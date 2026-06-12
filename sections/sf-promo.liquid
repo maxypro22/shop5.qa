@@ -1,0 +1,196 @@
+{%- comment -%}
+  SHOP FIVE — App download promo banner
+  Indigo gradient banner with App Store / Google Play badges.
+{%- endcomment -%}
+
+<section class="sf-promo" data-section-id="{{ section.id }}" data-section-type="sf-promo">
+  <div class="container">
+    <div class="sf-promo__banner">
+      <span class="sf-promo__orb sf-promo__orb--1" aria-hidden="true"></span>
+      <span class="sf-promo__orb sf-promo__orb--2" aria-hidden="true"></span>
+
+      <div class="sf-promo__content">
+        <img class="sf-promo__logo" src="{{ 'shop5-logo.png' | asset_url }}" width="160" height="160" loading="lazy" decoding="async" alt="{{ shop.name | escape }}">
+
+        <div class="sf-promo__text">
+          {%- if section.settings.title != blank -%}
+            <h2 class="sf-promo__title">{{ section.settings.title | escape }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.subtitle != blank -%}
+            <p class="sf-promo__subtitle">{{ section.settings.subtitle | escape }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="sf-promo__badges">
+          {%- if section.settings.appstore_url != blank -%}
+            <a href="{{ section.settings.appstore_url }}" target="_blank" rel="noopener" class="sf-promo__badge">
+              <img src="{{ section.settings.appstore_badge | default: 'https://i.postimg.cc/hhF5bHdH/download-on-the-app-store-apple-logo-png-transparent.png' }}" height="48" loading="lazy" decoding="async" alt="App Store">
+            </a>
+          {%- endif -%}
+
+          {%- if section.settings.play_url != blank -%}
+            <a href="{{ section.settings.play_url }}" target="_blank" rel="noopener" class="sf-promo__badge">
+              <img src="{{ section.settings.play_badge | default: 'https://i.postimg.cc/PrXzgV5h/google-play-badge-logo-png-transparent.png' }}" height="48" loading="lazy" decoding="async" alt="Google Play">
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sf-promo {
+    padding: 34px 0;
+  }
+
+  .sf-promo__banner {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: linear-gradient(120deg, #1b1653 0%, #3525cd 55%, #4f46e5 100%);
+    padding: 44px 40px;
+  }
+
+  .sf-promo__orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .sf-promo__orb--1 {
+    width: 300px;
+    height: 300px;
+    inset-inline-end: -90px;
+    top: -130px;
+    background: rgba(139, 128, 255, 0.25);
+  }
+
+  .sf-promo__orb--2 {
+    width: 200px;
+    height: 200px;
+    inset-inline-start: -70px;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .sf-promo__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .sf-promo__logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    flex: 0 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .sf-promo__text {
+    flex: 1 1 auto;
+  }
+
+  .sf-promo__title {
+    color: #ffffff;
+    font-size: clamp(20px, 2.6vw, 28px);
+    font-weight: 700;
+    margin: 0 0 6px;
+  }
+
+  .sf-promo__subtitle {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 520px;
+  }
+
+  .sf-promo__badges {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+  }
+
+  .sf-promo__badge {
+    display: inline-flex;
+    transition: transform 0.25s ease;
+  }
+
+  .sf-promo__badge:hover {
+    transform: translateY(-3px);
+  }
+
+  .sf-promo__badge img {
+    height: 48px;
+    width: auto;
+    display: block;
+  }
+
+  @media screen and (max-width: 860px) {
+    .sf-promo__banner {
+      padding: 34px 24px;
+    }
+
+    .sf-promo__content {
+      flex-direction: column;
+      text-align: center;
+      gap: 18px;
+    }
+
+    .sf-promo__badges {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SF App Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "حمّل تطبيق شوب فايف"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "تسوق أسرع وتابع طلباتك واستلم إشعارات العروض الحصرية من جوالك"
+    },
+    {
+      "type": "url",
+      "id": "appstore_url",
+      "label": "App Store link"
+    },
+    {
+      "type": "text",
+      "id": "appstore_badge",
+      "label": "App Store badge image URL"
+    },
+    {
+      "type": "url",
+      "id": "play_url",
+      "label": "Google Play link"
+    },
+    {
+      "type": "text",
+      "id": "play_badge",
+      "label": "Google Play badge image URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SF App Banner"
+    }
+  ]
+}
+{% endschema %}

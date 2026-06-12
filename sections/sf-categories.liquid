@@ -1,0 +1,197 @@
+{%- comment -%}
+  SHOP FIVE — Shop by category
+  Cards pull each collection's own image (falls back to its first product's image).
+{%- endcomment -%}
+
+<section class="sf-categories" data-section-id="{{ section.id }}" data-section-type="sf-categories">
+  <div class="container">
+    <header class="sf-categories__header">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="sf-categories__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="sf-categories__title">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+    </header>
+
+    <div class="sf-categories__grid">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- assign cat = block.settings.collection -%}
+          {%- if cat != blank -%}
+            {%- render 'sf-category-card', cat: cat, attrs: block.shopify_attributes -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for cat in collections limit: 8 -%}
+          {%- if cat.products_count > 0 -%}
+            {%- render 'sf-category-card', cat: cat -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sf-categories {
+    padding: 44px 0 12px;
+  }
+
+  .sf-categories__header {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+
+  .sf-categories__eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #4f46e5;
+    margin-bottom: 6px;
+  }
+
+  .sf-categories__title {
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #191c1d;
+    margin: 0;
+  }
+
+  .sf-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .sf-category-card {
+    display: block;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .sf-category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10);
+  }
+
+  .sf-category-card__media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: #f3f4f5;
+    overflow: hidden;
+  }
+
+  .sf-category-card__media img,
+  .sf-category-card__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .sf-category-card:hover .sf-category-card__media img {
+    transform: scale(1.06);
+  }
+
+  .sf-category-card__info {
+    padding: 14px 16px 16px;
+    text-align: center;
+  }
+
+  .sf-category-card__name {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #191c1d;
+    transition: color 0.2s ease;
+  }
+
+  .sf-category-card:hover .sf-category-card__name {
+    color: #4f46e5;
+  }
+
+  .sf-category-card__count {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #555f6f;
+    background: #f3f4f5;
+    border-radius: 999px;
+    padding: 2px 12px;
+  }
+
+  @media screen and (max-width: 999px) {
+    .sf-categories__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .sf-categories {
+      padding: 32px 0 8px;
+    }
+
+    .sf-categories__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .sf-category-card__info {
+      padding: 11px 10px 13px;
+    }
+
+    .sf-category-card__name {
+      font-size: 13px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SF Categories",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "الأقسام"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "تسوق حسب الفئة"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "SF Categories"
+    }
+  ]
+}
+{% endschema %}

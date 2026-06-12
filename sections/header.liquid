@@ -67,7 +67,12 @@
                    src="{{ section.settings.logo | img_url: image_size, scale: 2 }}"
                    alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
             {%- else -%}
-              <span class="header__logo-text">{{ shop.name }}</span>
+              <span class="visually-hidden">{{ shop.name }}</span>
+              <img class="header__logo-image header__logo-image--brand"
+                   width="160"
+                   height="160"
+                   src="{{ 'shop5-logo.png' | asset_url }}"
+                   alt="{{ shop.name | escape }}">
             {%- endif -%}
           </a>
         {%- endcapture -%}
@@ -76,6 +81,35 @@
           <h1 class="header__logo">{{ header_logo }}</h1>
         {%- else -%}
           <div class="header__logo">{{ header_logo }}</div>
+        {%- endif -%}
+
+        {%- comment -%}Language selector next to the logo{%- endcomment -%}
+        {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+          <div class="header__locale-inline hidden-pocket">
+            {%- form 'localization', id: 'localization_form_header_locale' -%}
+              <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+
+              <button class="header__locale-toggle" data-action="toggle-popover" aria-controls="desktop-locale-selector" aria-expanded="false">
+                <span class="locale-selector__value">{{ localization.language.iso_code | upcase }}</span> {% render 'icon', icon: 'arrow-bottom' %}
+              </button>
+
+              <div id="desktop-locale-selector" class="popover popover--locale" aria-hidden="true">
+                {%- render 'icon', icon: 'nav-triangle-borderless' -%}
+
+                <div class="popover__inner popover__inner--no-padding">
+                  <ul class="popover__linklist" role="list">
+                    {%- for language in localization.available_languages -%}
+                      <li class="popover__linklist-item">
+                        <button type="submit" name="locale_code" class="popover__link-item" value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                          {{- language.endonym_name | capitalize -}}
+                        </button>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+            {%- endform -%}
+          </div>
         {%- endif -%}
 
         {%- comment -%}
@@ -199,37 +233,6 @@
         {%- endif -%}
 
         <div class="header__action-list">
-          {%- if locale_selector -%}
-            <div class="header__action-item header__action-item--locale hidden-pocket">
-              {%- form 'localization', id: 'localization_form_header_locale' -%}
-                <span class="header__action-item-title">{{ 'header.general.language' | t }}</span>
-                <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
-
-                <div class="header__action-item-content">
-                  <button class="header__action-item-link" data-action="toggle-popover" aria-controls="desktop-locale-selector" aria-expanded="false">
-                    <span class="locale-selector__value">{{ localization.language.endonym_name | capitalize }}</span> {% render 'icon', icon: 'arrow-bottom' %}
-                  </button>
-
-                  <div id="desktop-locale-selector" class="popover popover--locale" aria-hidden="true">
-                    {%- render 'icon', icon: 'nav-triangle-borderless' -%}
-
-                    <div class="popover__inner popover__inner--no-padding">
-                      <ul class="popover__linklist" role="list">
-                        {%- for language in localization.available_languages -%}
-                          <li class="popover__linklist-item">
-                            <button type="submit" name="locale_code" class="popover__link-item" value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
-                              {{- language.endonym_name | capitalize -}}
-                            </button>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              {%- endform -%}
-            </div>
-          {%- endif -%}
-
           {%- if country_selector -%}
             <div class="header__action-item header__action-item--currency hidden-pocket">
               {%- form 'localization', id: 'localization_form_header_currency' -%}

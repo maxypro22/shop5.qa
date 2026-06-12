@@ -372,6 +372,46 @@ body.sf-scrolled .shopify-section__header {
   text-transform: none;
 }
 
+/* Brand logo image — app-icon style */
+.header__logo-image--brand {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: block;
+}
+
+/* Language selector beside the logo */
+.header__locale-inline {
+  position: relative;
+  margin-inline-start: 14px;
+  align-self: center;
+}
+
+.header__locale-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sf-charcoal);
+  background: var(--sf-surface-low);
+  border-radius: var(--sf-radius-pill);
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.header__locale-toggle:hover,
+.header__locale-toggle[aria-expanded="true"] {
+  background: var(--sf-primary-tint);
+  color: var(--sf-primary);
+}
+
+.header__locale-inline .popover {
+  top: calc(100% + 10px);
+  inset-inline-start: 0;
+}
+
 /* Nav links */
 .nav-bar__link,
 .header__desktop-nav-toggle {

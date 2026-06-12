@@ -1,0 +1,26 @@
+{%- comment -%}
+  Category card for the sf-categories section.
+  Accepts: cat (collection), attrs (shopify block attributes)
+{%- endcomment -%}
+
+{%- assign cat_image = cat.featured_image | default: cat.products.first.featured_media.preview_image -%}
+
+<a href="{{ cat.url }}" class="sf-category-card" {{ attrs }}>
+  <span class="sf-category-card__media">
+    {%- if cat_image -%}
+      {{- cat_image | image_url: width: 600 | image_tag:
+            loading: 'lazy',
+            decoding: 'async',
+            widths: '300,400,600,800',
+            sizes: '(max-width: 640px) 50vw, (max-width: 999px) 33vw, 300px',
+            alt: cat.title | escape -}}
+    {%- else -%}
+      {{- 'collection-1' | placeholder_svg_tag -}}
+    {%- endif -%}
+  </span>
+
+  <span class="sf-category-card__info">
+    <span class="sf-category-card__name">{{ cat.title }}</span>
+    <span class="sf-category-card__count">{{ 'collection.general.products_count' | t: count: cat.products_count }}</span>
+  </span>
+</a>
