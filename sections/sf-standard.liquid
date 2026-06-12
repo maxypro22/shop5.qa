@@ -1,0 +1,166 @@
+{%- comment -%}
+  SHOP FIVE — "The Standard" value-proposition strip
+  Four quiet columns with staggered reveal (Elevare style).
+{%- endcomment -%}
+
+<section class="sf-standard" data-section-id="{{ section.id }}" data-section-type="sf-standard">
+  <div class="container">
+    <header class="sf-standard__header">
+      <h2 class="sf-standard__title">
+        {{- section.settings.title | escape -}}
+        {%- if section.settings.title_accent != blank %} <em>{{ section.settings.title_accent | escape }}</em>{% endif -%}
+      </h2>
+    </header>
+
+    <div class="sf-standard__grid">
+      {%- for block in section.blocks -%}
+        <div class="sf-standard__item" {{ block.shopify_attributes }}>
+          <span class="sf-standard__index" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <h3 class="sf-standard__item-title">{{ block.settings.title | escape }}</h3>
+
+          {%- if block.settings.text != blank -%}
+            <p class="sf-standard__item-text">{{ block.settings.text | escape }}</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sf-standard {
+    padding: 64px 0 50px;
+    background: var(--el-ivory, #F2EFE6);
+  }
+
+  .sf-standard__header {
+    text-align: center;
+    margin-bottom: 44px;
+  }
+
+  .sf-standard__title {
+    font-family: var(--heading-font-family);
+    font-size: clamp(24px, 3.2vw, 36px);
+    font-weight: 500;
+    color: var(--el-charcoal, #23261E);
+    margin: 0;
+  }
+
+  .sf-standard__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--el-olive, #5B6645);
+  }
+
+  .sf-standard__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px;
+  }
+
+  .sf-standard__item {
+    text-align: center;
+    padding: 0 8px;
+    position: relative;
+  }
+
+  .sf-standard__item:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: -18px;
+    top: 12%;
+    height: 76%;
+    width: 1px;
+    background: var(--el-border, #E5E1D6);
+  }
+
+  .sf-standard__index {
+    display: block;
+    font-family: var(--heading-font-family);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--el-olive, #5B6645);
+    margin-bottom: 12px;
+  }
+
+  .sf-standard__item-title {
+    font-family: var(--heading-font-family);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--el-charcoal, #23261E);
+    margin: 0 0 8px;
+  }
+
+  .sf-standard__item-text {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--el-muted, #76796B);
+    margin: 0;
+  }
+
+  @media screen and (max-width: 860px) {
+    .sf-standard {
+      padding: 44px 0 36px;
+    }
+
+    .sf-standard__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 20px;
+    }
+
+    .sf-standard__item:nth-child(3)::before {
+      display: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SF Standard",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "معيار"
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Heading accent (italic)",
+      "default": "شوب فايف"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "توصيل سريع"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "SF Standard",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

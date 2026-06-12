@@ -1,34 +1,91 @@
 {
   "sections": {
     "sf_hero": {
-      "type": "sf-hero",
+      "type": "sf-hero-parallax",
+      "settings": {
+        "eyebrow": "شوب فايف — قطر",
+        "title": "كل ما تحتاجه",
+        "title_accent": "في مكان واحد",
+        "subtitle": "تشكيلة مختارة من الأزياء والساعات والنظارات والإكسسوارات مع توصيل سريع لجميع مناطق قطر",
+        "button_text": "تسوق التشكيلة",
+        "button_link": "shopify://collections",
+        "show_scroll_hint": true
+      }
+    },
+    "sf_standard": {
+      "type": "sf-standard",
       "blocks": {
-        "highlight_delivery": {
-          "type": "highlight",
+        "std_delivery": {
+          "type": "item",
           "settings": {
-            "text": "توصيل لجميع مناطق الدوحة خلال ٤ ساعات"
+            "title": "توصيل خلال ٤ ساعات",
+            "text": "لجميع مناطق الدوحة، قطر"
           }
         },
-        "highlight_cod": {
-          "type": "highlight",
+        "std_cod": {
+          "type": "item",
           "settings": {
-            "text": "الدفع عند الاستلام"
+            "title": "الدفع عند الاستلام",
+            "text": "ادفع نقداً أو بالبطاقة عند وصول طلبك"
           }
         },
-        "highlight_cr": {
-          "type": "highlight",
+        "std_app": {
+          "type": "item",
           "settings": {
+            "title": "تسوق عبر التطبيق",
+            "text": "متوفر على App Store و Google Play"
+          }
+        },
+        "std_cr": {
+          "type": "item",
+          "settings": {
+            "title": "متجر موثق",
             "text": "سجل تجاري رقم 156821"
           }
         }
       },
-      "block_order": ["highlight_delivery", "highlight_cod", "highlight_cr"],
+      "block_order": ["std_delivery", "std_cod", "std_app", "std_cr"],
       "settings": {
-        "eyebrow": "شوب فايف — قطر",
-        "title": "كل ما تحتاجه في مكان واحد",
-        "subtitle": "تسوق أحدث المنتجات من الأزياء والساعات والنظارات والإكسسوارات مع توصيل سريع لجميع مناطق قطر",
-        "button_text": "تسوق الآن",
-        "button_link": "shopify://collections"
+        "title": "معيار",
+        "title_accent": "شوب فايف"
+      }
+    },
+    "rail_shoes": {
+      "type": "sf-products-scroll",
+      "settings": {
+        "collection": "shoes",
+        "eyebrow": "تسوق الآن",
+        "title": "أحذية",
+        "title_accent": "مختارة",
+        "products_count": 10,
+        "show_quick_buy": true,
+        "link_title": "عرض الكل",
+        "link_url": "shopify://collections/shoes"
+      }
+    },
+    "rail_tshirt": {
+      "type": "sf-products-scroll",
+      "settings": {
+        "collection": "t-shirt",
+        "eyebrow": "الأكثر طلباً",
+        "title": "أوفر سايز",
+        "title_accent": "تيشيرت",
+        "products_count": 10,
+        "show_quick_buy": true,
+        "link_title": "عرض الكل",
+        "link_url": "shopify://collections/t-shirt"
+      }
+    },
+    "sf_banner_watches": {
+      "type": "sf-image-overlay",
+      "settings": {
+        "text_position": "start",
+        "eyebrow": "تشكيلة الساعات",
+        "title": "أناقة",
+        "title_accent": "تدوم",
+        "text": "ساعات رجالية ونسائية مختارة بعناية لإطلالة مميزة في كل المناسبات",
+        "button_text": "تسوق الساعات",
+        "button_link": "shopify://collections/mens-watch"
       }
     },
     "sf_categories": {
@@ -58,30 +115,30 @@
         "title": "تسوق حسب الفئة"
       }
     },
-    "featured_shoes": {
-      "type": "featured-collection",
+    "rail_mens_watch": {
+      "type": "sf-products-scroll",
       "settings": {
-        "collection": "shoes",
-        "title": "أحذية",
-        "products_count": 4,
-        "layout": "vertical",
-        "stack_products": true,
+        "collection": "mens-watch",
+        "eyebrow": "للرجال",
+        "title": "ساعات",
+        "title_accent": "رجالية",
+        "products_count": 10,
         "show_quick_buy": true,
         "link_title": "عرض الكل",
-        "link_url": "shopify://collections/shoes"
+        "link_url": "shopify://collections/mens-watch"
       }
     },
-    "featured_tshirt": {
-      "type": "featured-collection",
+    "rail_womens_watch": {
+      "type": "sf-products-scroll",
       "settings": {
-        "collection": "t-shirt",
-        "title": "أوفر سايز تيشيرت",
-        "products_count": 4,
-        "layout": "vertical",
-        "stack_products": true,
+        "collection": "womens-watch",
+        "eyebrow": "للنساء",
+        "title": "ساعات",
+        "title_accent": "نسائية",
+        "products_count": 10,
         "show_quick_buy": true,
         "link_title": "عرض الكل",
-        "link_url": "shopify://collections/t-shirt"
+        "link_url": "shopify://collections/womens-watch"
       }
     },
     "sf_promo": {
@@ -92,55 +149,17 @@
         "appstore_url": "https://apps.apple.com/qa/app/shop-five-qatar/id1621345100",
         "play_url": "https://play.google.com/store/apps/details?id=qa.shop5"
       }
-    },
-    "featured_mens_watch": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "mens-watch",
-        "title": "ساعات رجالية",
-        "products_count": 4,
-        "layout": "vertical",
-        "stack_products": true,
-        "show_quick_buy": true,
-        "link_title": "عرض الكل",
-        "link_url": "shopify://collections/mens-watch"
-      }
-    },
-    "featured_womens_watch": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "womens-watch",
-        "title": "ساعات نسائية",
-        "products_count": 4,
-        "layout": "vertical",
-        "stack_products": true,
-        "show_quick_buy": true,
-        "link_title": "عرض الكل",
-        "link_url": "shopify://collections/womens-watch"
-      }
-    },
-    "featured_shorts": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "cotton-shorts",
-        "title": "شورت",
-        "products_count": 4,
-        "layout": "vertical",
-        "stack_products": true,
-        "show_quick_buy": true,
-        "link_title": "عرض الكل",
-        "link_url": "shopify://collections/cotton-shorts"
-      }
     }
   },
   "order": [
     "sf_hero",
+    "sf_standard",
+    "rail_shoes",
+    "rail_tshirt",
+    "sf_banner_watches",
     "sf_categories",
-    "featured_shoes",
-    "featured_tshirt",
-    "sf_promo",
-    "featured_mens_watch",
-    "featured_womens_watch",
-    "featured_shorts"
+    "rail_mens_watch",
+    "rail_womens_watch",
+    "sf_promo"
   ]
 }

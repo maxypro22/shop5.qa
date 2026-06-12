@@ -1,0 +1,214 @@
+{%- comment -%}
+  SHOP FIVE — Full-width image with overlay text
+  Parallax background drift + reveal-on-scroll content, Elevare banner style.
+{%- endcomment -%}
+
+<section class="sf-banner sf-banner--{{ section.settings.text_position }}" data-section-id="{{ section.id }}" data-section-type="sf-image-overlay">
+  <div class="sf-banner__bg" data-sf-parallax="0.25">
+    {%- if section.settings.image -%}
+      {{- section.settings.image | image_url: width: 2600 | image_tag:
+            loading: 'lazy',
+            decoding: 'async',
+            widths: '800,1200,1600,2000,2600',
+            sizes: '100vw',
+            class: 'sf-banner__image',
+            alt: section.settings.image.alt | default: section.settings.title -}}
+    {%- endif -%}
+  </div>
+
+  <span class="sf-banner__scrim" aria-hidden="true"></span>
+
+  <div class="container sf-banner__container">
+    <div class="sf-banner__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="sf-banner__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+
+      <h2 class="sf-banner__title">
+        {{- section.settings.title | escape -}}
+        {%- if section.settings.title_accent != blank %} <em>{{ section.settings.title_accent | escape }}</em>{% endif -%}
+      </h2>
+
+      {%- if section.settings.text != blank -%}
+        <p class="sf-banner__text">{{ section.settings.text | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.button_text != blank -%}
+        <a href="{{ section.settings.button_link | default: routes.collections_url }}" class="sf-banner__cta">{{ section.settings.button_text | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sf-banner {
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    background-color: #2E3325;
+  }
+
+  .sf-banner__bg {
+    position: absolute;
+    inset: -12% 0;
+    background-image: url('{{ 'sf-hero-olive.svg' | asset_url }}');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .sf-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sf-banner__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to {% if section.settings.text_position == 'start' %}{% if request.locale.iso_code contains 'ar' %}left{% else %}right{% endif %}{% else %}top{% endif %}, rgba(35, 38, 30, 0.66), rgba(35, 38, 30, 0.12));
+    pointer-events: none;
+  }
+
+  .sf-banner__container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .sf-banner__content {
+    max-width: 520px;
+    padding: 80px 0;
+  }
+
+  .sf-banner--center .sf-banner__content {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .sf-banner__eyebrow {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: #C9CDB9;
+    margin-bottom: 18px;
+  }
+
+  .sf-banner__title {
+    font-family: var(--heading-font-family);
+    color: #F7F5EE;
+    font-size: clamp(30px, 4.4vw, 52px);
+    font-weight: 500;
+    line-height: 1.12;
+    margin: 0 0 16px;
+  }
+
+  .sf-banner__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: #D9DDC8;
+  }
+
+  .sf-banner__text {
+    color: rgba(247, 245, 238, 0.82);
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0 0 30px;
+  }
+
+  .sf-banner__cta {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #F7F5EE;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(247, 245, 238, 0.65);
+    padding-bottom: 6px;
+    transition: color 0.3s ease, border-color 0.3s ease, letter-spacing 0.3s ease;
+  }
+
+  .sf-banner__cta:hover {
+    color: #D9DDC8;
+    border-color: #D9DDC8;
+    letter-spacing: 0.26em;
+  }
+
+  @media screen and (max-width: 640px) {
+    .sf-banner {
+      min-height: 400px;
+    }
+
+    .sf-banner__content {
+      padding: 60px 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SF Image Overlay",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Text position",
+      "options": [
+        { "value": "start", "label": "Start" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "تشكيلة"
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Heading accent (italic)",
+      "default": "مميزة"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "تسوق التشكيلة"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SF Image Overlay"
+    }
+  ]
+}
+{% endschema %}

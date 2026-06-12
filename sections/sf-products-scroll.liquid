@@ -1,0 +1,245 @@
+{%- comment -%}
+  SHOP FIVE — Horizontal scroll product rail
+  Reuses the theme's product-item snippet so quick-buy / cart logic is untouched.
+  Scroll-snap + arrow buttons + drag-to-scroll (shop5-custom.js [data-sf-rail]).
+{%- endcomment -%}
+
+{%- assign rail_collection = section.settings.collection -%}
+
+<section class="sf-rail section" data-section-id="{{ section.id }}" data-section-type="sf-products-scroll">
+  <div class="container">
+    <header class="sf-rail__header">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="sf-rail__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+        {%- endif -%}
+
+        <h2 class="sf-rail__title">
+          {{- section.settings.title | escape -}}
+          {%- if section.settings.title_accent != blank %} <em>{{ section.settings.title_accent | escape }}</em>{% endif -%}
+        </h2>
+      </div>
+
+      <div class="sf-rail__nav">
+        {%- if section.settings.link_title != blank -%}
+          <a class="section__action-link" href="{{ section.settings.link_url | default: rail_collection.url }}">{{ section.settings.link_title | escape }}</a>
+        {%- endif -%}
+      </div>
+    </header>
+  </div>
+
+  <div class="sf-rail__viewport" data-sf-rail>
+    <div class="container sf-rail__rel">
+      <button type="button" class="sf-rail__arrow sf-rail__arrow--prev" data-sf-rail-prev aria-label="{{ 'general.accessibility.previous' | t | default: 'Previous' }}">
+        {%- render 'icon', icon: 'arrow-left' -%}
+      </button>
+
+      <div class="sf-rail__track" data-sf-rail-track>
+        {%- for product in rail_collection.products limit: section.settings.products_count -%}
+          <div class="sf-rail__cell">
+            {%- render 'product-item', product: product, show_add_to_cart: section.settings.show_quick_buy -%}
+          </div>
+        {%- else -%}
+          {%- for i in (1..6) -%}
+            <div class="sf-rail__cell">
+              {%- render 'product-item-placeholder', show_add_to_cart: false -%}
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+
+      <button type="button" class="sf-rail__arrow sf-rail__arrow--next" data-sf-rail-next aria-label="{{ 'general.accessibility.next' | t | default: 'Next' }}">
+        {%- render 'icon', icon: 'arrow-right' -%}
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sf-rail {
+    padding: 46px 0 26px;
+  }
+
+  .sf-rail__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 24px;
+  }
+
+  .sf-rail__eyebrow {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--el-olive, #5B6645);
+    margin-bottom: 7px;
+  }
+
+  .sf-rail__title {
+    font-family: var(--heading-font-family);
+    font-size: clamp(24px, 3.2vw, 36px);
+    font-weight: 500;
+    color: var(--el-charcoal, #23261E);
+    margin: 0;
+  }
+
+  .sf-rail__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--el-olive, #5B6645);
+  }
+
+  .sf-rail__rel {
+    position: relative;
+  }
+
+  .sf-rail__track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 2px 22px;
+    cursor: grab;
+  }
+
+  .sf-rail__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sf-rail__cell {
+    flex: 0 0 auto;
+    width: clamp(218px, 23vw, 290px);
+    scroll-snap-align: start;
+  }
+
+  /* product-item inside the rail behaves as a normal vertical card */
+  .sf-rail__cell .product-item {
+    height: 100%;
+    margin: 0;
+  }
+
+  .sf-rail__arrow {
+    position: absolute;
+    top: 38%;
+    z-index: 2;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--el-surface, #fff);
+    border: 1px solid var(--el-border, #E5E1D6);
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(35, 38, 30, 0.12);
+    color: var(--el-charcoal, #23261E);
+    cursor: pointer;
+    transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease, transform 0.2s ease;
+  }
+
+  .sf-rail__arrow:hover {
+    background: var(--el-olive, #5B6645);
+    border-color: var(--el-olive, #5B6645);
+    color: #ffffff;
+  }
+
+  .sf-rail__arrow:active {
+    transform: scale(0.92);
+  }
+
+  .sf-rail__arrow[disabled] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sf-rail__arrow--prev {
+    inset-inline-start: -10px;
+  }
+
+  .sf-rail__arrow--next {
+    inset-inline-end: -10px;
+  }
+
+  [dir="rtl"] .sf-rail__arrow svg {
+    transform: scaleX(-1);
+  }
+
+  @media screen and (max-width: 740px) {
+    .sf-rail {
+      padding: 34px 0 18px;
+    }
+
+    .sf-rail__arrow {
+      display: none;
+    }
+
+    .sf-rail__cell {
+      width: 72vw;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SF Products Scroll",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "منتجات"
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Heading accent (italic)",
+      "default": "مختارة"
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "label": "Products",
+      "min": 4,
+      "max": 16,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "label": "Show quick buy",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "link_title",
+      "label": "Link text",
+      "default": "عرض الكل"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SF Products Scroll"
+    }
+  ]
+}
+{% endschema %}

@@ -61,9 +61,22 @@
     </div>
   {%- endif -%}
 
+  {%- capture ticker_messages -%}
+    <span class="announcement-bar__ticker-item">{{ section.settings.text | escape }}</span><span class="announcement-bar__ticker-separator">&#9670;</span>
+    {%- if section.settings.text_2 != blank -%}
+      <span class="announcement-bar__ticker-item">{{ section.settings.text_2 | escape }}</span><span class="announcement-bar__ticker-separator">&#9670;</span>
+    {%- endif -%}
+    {%- if section.settings.text_3 != blank -%}
+      <span class="announcement-bar__ticker-item">{{ section.settings.text_3 | escape }}</span><span class="announcement-bar__ticker-separator">&#9670;</span>
+    {%- endif -%}
+    {%- if section.settings.text_4 != blank -%}
+      <span class="announcement-bar__ticker-item">{{ section.settings.text_4 | escape }}</span><span class="announcement-bar__ticker-separator">&#9670;</span>
+    {%- endif -%}
+  {%- endcapture -%}
+
   {%- capture ticker_items -%}
-    {%- for i in (1..6) -%}
-      <span class="announcement-bar__ticker-item">{{ section.settings.text | escape }}</span><span class="announcement-bar__ticker-separator">&#9670;</span>
+    {%- for i in (1..4) -%}
+      {{ ticker_messages }}
     {%- endfor -%}
   {%- endcapture -%}
 
@@ -138,6 +151,21 @@
       "id": "text",
       "label": "Text",
       "default": "Announce something here"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text 2 (ticker)"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text 3 (ticker)"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Text 4 (ticker)"
     },
     {
       "type": "select",

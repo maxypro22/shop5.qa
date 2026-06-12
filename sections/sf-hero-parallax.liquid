@@ -1,0 +1,271 @@
+{%- comment -%}
+  SHOP FIVE — Full-screen parallax hero
+  - Background layer drifts on scroll (data-sf-parallax, driven by shop5-custom.js)
+  - Text cascades in on page load (.sf-entrance)
+  - Title supports an italic accent word, Elevare-style
+{%- endcomment -%}
+
+<section class="sf-phero" data-section-id="{{ section.id }}" data-section-type="sf-hero-parallax" data-sf-entrance-root>
+  <div class="sf-phero__bg" data-sf-parallax="0.35">
+    {%- if section.settings.image -%}
+      {{- section.settings.image | image_url: width: 2600 | image_tag:
+            fetchpriority: 'high',
+            widths: '800,1200,1600,2000,2600',
+            sizes: '100vw',
+            class: 'sf-phero__bg-image',
+            alt: '' -}}
+    {%- endif -%}
+  </div>
+
+  <span class="sf-phero__scrim" aria-hidden="true"></span>
+
+  <div class="sf-phero__content container">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="sf-phero__eyebrow sf-entrance">{{ section.settings.eyebrow | escape }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank or section.settings.title_accent != blank -%}
+      <h2 class="sf-phero__title sf-entrance">
+        {{- section.settings.title | escape -}}
+        {%- if section.settings.title_accent != blank %} <em>{{ section.settings.title_accent | escape }}</em>{% endif -%}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="sf-phero__subtitle sf-entrance">{{ section.settings.subtitle | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.button_text != blank -%}
+      <div class="sf-phero__actions sf-entrance">
+        <a href="{{ section.settings.button_link | default: routes.collections_url }}" class="sf-phero__cta">
+          {{- section.settings.button_text | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_scroll_hint -%}
+    <button type="button" class="sf-phero__scroll sf-entrance" data-action="sf-scroll-down" aria-label="{{ 'general.accessibility.skip_to_content' | t }}"
+      onclick="this.closest('.sf-phero').nextElementSibling ? this.closest('.sf-phero').nextElementSibling.scrollIntoView({behavior:'smooth'}) : window.scrollBy({top: window.innerHeight, behavior:'smooth'})">
+      <span class="sf-phero__scroll-line" aria-hidden="true"></span>
+    </button>
+  {%- endif -%}
+</section>
+
+<style>
+  .sf-phero {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100svh - var(--header-height, 80px) - var(--announcement-bar-height, 34px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #2E3325;
+  }
+
+  @supports not (height: 100svh) {
+    .sf-phero {
+      min-height: calc(100vh - var(--header-height, 80px) - var(--announcement-bar-height, 34px));
+    }
+  }
+
+  /* Parallax layer is oversized so the drift never reveals edges */
+  .sf-phero__bg {
+    position: absolute;
+    inset: -12% 0;
+    background-image: url('{{ 'sf-hero-olive.svg' | asset_url }}');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .sf-phero__bg-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sf-phero__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(35, 38, 30, 0.62), rgba(35, 38, 30, 0.18) 55%, rgba(35, 38, 30, 0.3));
+    pointer-events: none;
+  }
+
+  .sf-phero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    padding-top: 84px;
+    padding-bottom: 104px;
+  }
+
+  .sf-phero__eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #C9CDB9;
+    margin-bottom: 26px;
+  }
+
+  .sf-phero__title {
+    font-family: var(--heading-font-family);
+    color: #F7F5EE;
+    font-size: clamp(40px, 6.4vw, 78px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 22px;
+  }
+
+  .sf-phero__title em {
+    font-style: italic;
+    font-weight: 400;
+    color: #D9DDC8;
+  }
+
+  .sf-phero__subtitle {
+    color: rgba(247, 245, 238, 0.82);
+    font-size: clamp(14px, 1.6vw, 17px);
+    line-height: 1.75;
+    margin: 0 auto 38px;
+    max-width: 560px;
+  }
+
+  .sf-phero__cta {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #F7F5EE;
+    text-decoration: none;
+    border: 1px solid rgba(247, 245, 238, 0.55);
+    padding: 17px 46px;
+    transition: background-color 0.35s var(--el-ease, ease), color 0.35s var(--el-ease, ease), border-color 0.35s var(--el-ease, ease);
+  }
+
+  .sf-phero__cta:hover {
+    background: #F7F5EE;
+    border-color: #F7F5EE;
+    color: #2E3325;
+  }
+
+  .sf-phero__cta:active {
+    transform: scale(0.98);
+  }
+
+  .sf-phero__scroll {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .sf-phero__scroll-line {
+    display: block;
+    width: 1px;
+    height: 52px;
+    background: rgba(247, 245, 238, 0.6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sf-phero__scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: #F7F5EE;
+    animation: sf-scroll-drip 2.1s var(--el-ease, ease) infinite;
+  }
+
+  @keyframes sf-scroll-drip {
+    0%   { top: -50%; }
+    100% { top: 110%; }
+  }
+
+  @media screen and (max-width: 640px) {
+    .sf-phero__content {
+      padding-top: 64px;
+      padding-bottom: 92px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sf-phero__scroll-line::after {
+      animation: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SF Hero Parallax",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image",
+      "info": "Optional — a designed botanical background is used when empty."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "شوب فايف — قطر"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "كل ما تحتاجه"
+    },
+    {
+      "type": "text",
+      "id": "title_accent",
+      "label": "Heading accent (italic)",
+      "default": "في مكان واحد"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "تشكيلة مختارة من الأزياء والساعات والعطور والإكسسوارات مع توصيل سريع لجميع مناطق قطر"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "تسوق التشكيلة"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_hint",
+      "label": "Show scroll indicator",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "SF Hero Parallax"
+    }
+  ]
+}
+{% endschema %}
